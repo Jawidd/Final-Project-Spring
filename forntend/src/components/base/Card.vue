@@ -21,24 +21,21 @@
       space="0"
     />
 
-    <base-subtitle
-      v-if="subtitle"
-      :title="subtitle"
-    />
+    <base-subtitle v-if="subtitle" :title="subtitle" />
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'BaseCard',
+export default {
+  name: "BaseCard",
 
-    inheritAttrs: false,
+  inheritAttrs: false,
 
-    props: {
-      height: [Number, String],
-      width: [Number, String],
-      subtitle: String,
-      title: String,
-    },
+  props: {
+    height: [Number, String],
+    width: [Number, String],
+    subtitle: String,
+    title: String
   }
+};
 </script>
