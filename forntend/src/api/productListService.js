@@ -13,7 +13,7 @@ export default {
   },
 
   updateProduct(product) {
-    return axiosC.post("/product/update", product);
+    return axiosC.put("/product/update", product);
   },
 
   /* getAllproducts(type) {

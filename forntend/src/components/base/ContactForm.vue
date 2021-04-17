@@ -13,10 +13,7 @@
 
     <base-text-field label="Subject" />
 
-    <base-textarea
-      class="mb-6"
-      label="Your Need & Description"
-    />
+    <base-textarea class="mb-6" label="Your Need & Description" />
 
     <base-btn
       :color="!theme.isDark ? 'accent' : 'white'"
@@ -30,18 +27,18 @@
 </template>
 
 <script>
-  export default {
-    name: 'BaseContactForm',
+export default {
+  name: "BaseContactForm",
 
-    // Injected from the Vuetify Themeable mixin
-    inject: ['theme'],
+  // Injected from the Vuetify Themeable mixin
+  inject: ["theme"],
 
-    props: {
-      subtitle: String,
-      title: {
-        type: String,
-        default: 'MAIL US YOUR MESSAGE',
-      },
-    },
+  props: {
+    subtitle: String,
+    title: {
+      type: String,
+      default: "MAIL US YOUR MESSAGE"
+    }
   }
+};
 </script>

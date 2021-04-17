@@ -42,15 +42,35 @@ const router = new Router({
           meta: { src: require("@/assets/contact.jpg") }
         },
         {
-          path: "pro",
-          name: "Pro",
-          component: () => import("@/views/pro/Index.vue"),
+          path: "login",
+          name: "Login",
+          component: () => import("@/views/Login/Index.vue"),
           meta: { src: require("@/assets/pro.jpg") }
         },
         {
           path: "*",
           name: "FourOhFour",
           component: () => import("@/views/404/Index.vue")
+        },
+        {
+          path: "manageCategory",
+          name: "Category",
+          component: () => import("@/views/hidden/manageCategories.vue")
+        },
+        {
+          path: "manageInvoice",
+          name: "Invoice",
+          component: () => import("@/views/hidden/manageInvoices.vue")
+        },
+        {
+          path: "manageProduct",
+          name: "Product",
+          component: () => import("@/views/hidden/ManageProducts.vue")
+        },
+        {
+          path: "manageUser",
+          name: "User",
+          component: () => import("@/views/hidden/manageUsers.vue")
         }
       ]
     }

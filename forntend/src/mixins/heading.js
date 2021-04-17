@@ -1,36 +1,39 @@
 export default {
-  name: 'Heading',
+  name: "Heading",
 
   inject: {
     heading: {
-      default: () => ({ align: 'left' }),
-    },
+      default: () => ({ align: "left" })
+    }
   },
 
-  provide () {
+  provide() {
     return {
       heading: {
-        align: this.align,
-      },
-    }
+        align: this.align
+      }
+    };
   },
 
   props: {
     align: {
       type: String,
-      default () {
-        return this.heading.align
-      },
-    },
+      default() {
+        return this.heading.align;
+      }
+    }
   },
 
   computed: {
-    justify () {
+    justify() {
       switch (this.align) {
-        case 'center': return 'center'
-        case 'right': return 'end'
-        default: return 'start'
+        case "center":
+          return "center";
+        case "right":
+          return "end";
+        default:
+          return "start";
       }
-    },
-  },
-}
+    }
+  }
+};
