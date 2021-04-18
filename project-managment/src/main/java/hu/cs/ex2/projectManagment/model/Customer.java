@@ -1,8 +1,11 @@
 package hu.cs.ex2.projectManagment.model;
 
 import java.sql.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,24 +26,21 @@ public class Customer {
     private String password;
     private String location;
     private boolean isAdmin;
-    
-    private Invoice invoice; 
     //private Date creationDate;
     //private Date modificationDate;
-    
-    
-    @OneToMany
-    public Invoice getInvoice() {
-        return invoice;
+
+    private List<Invoice> invoices; 
+
+   
+    @OneToMany(mappedBy = "customer",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+    public List<Invoice> getInvoices() {
+        return invoices;
     }
-
-    public void setInvoice(Invoice invoice) {
-        this.invoice = invoice;
-    }
-
-
-
-
+ 
+    public void setInvoices(List<Invoice> invoices) {
+        this.invoices = invoices;
+    } 
+    
 
 
     @Id

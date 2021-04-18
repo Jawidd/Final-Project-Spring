@@ -1,8 +1,5 @@
 <template>
-  <div
-    :class="classes"
-    class="base-section-heading"
-  >
+  <div :class="classes" class="base-section-heading">
     <base-avatar
       v-if="icon"
       :icon="icon"
@@ -12,12 +9,7 @@
       dark
     />
 
-    <base-subtitle
-      v-if="subtitle"
-      :title="subtitle"
-      space="1"
-      tag="h2"
-    />
+    <base-subtitle v-if="subtitle" :title="subtitle" space="1" tag="h2" />
 
     <base-subheading
       v-if="title"
@@ -29,11 +21,7 @@
 
     <base-divider :color="color" />
 
-    <base-body
-      v-if="$slots.default || text"
-      class="mx-auto"
-      max-width="700"
-    >
+    <base-body v-if="$slots.default || text" class="mx-auto" max-width="700">
       <slot v-if="$slots.default" />
 
       <template v-else>
@@ -44,41 +32,38 @@
 </template>
 
 <script>
-  // Mixins
-  import Heading from '@/mixins/heading'
+// Mixins
+import Heading from "@/mixins/heading";
 
-  export default {
-    name: 'BaseSectionHeading',
+export default {
+  name: "BaseSectionHeading",
 
-    mixins: [Heading],
+  mixins: [Heading],
 
-    props: {
-      align: {
-        type: String,
-        default: 'center',
-      },
-      color: {
-        type: String,
-        default: 'primary',
-      },
-      icon: String,
-      outlined: Boolean,
-      space: {
-        type: [Number, String],
-        default: 12,
-      },
-      subtitle: String,
-      text: String,
-      title: String,
+  props: {
+    align: {
+      type: String,
+      default: "center"
     },
-
-    computed: {
-      classes () {
-        return [
-          `text-${this.align}`,
-          `mb-${this.space}`,
-        ]
-      },
+    color: {
+      type: String,
+      default: "primary"
     },
+    icon: String,
+    outlined: Boolean,
+    space: {
+      type: [Number, String],
+      default: 12
+    },
+    subtitle: String,
+    text: String,
+    title: String
+  },
+
+  computed: {
+    classes() {
+      return [`text-${this.align}`, `mb-${this.space}`];
+    }
   }
+};
 </script>

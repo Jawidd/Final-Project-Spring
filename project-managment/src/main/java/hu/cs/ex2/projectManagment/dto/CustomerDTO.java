@@ -1,6 +1,7 @@
 package hu.cs.ex2.projectManagment.dto;
 
 import java.sql.Date;
+import java.util.List;
 
 public class CustomerDTO {
 
@@ -13,7 +14,7 @@ public class CustomerDTO {
     private String location;
     private boolean isAdmin;
     
-    private Integer invoiceId;
+    private List<Integer> invoicesIds;
 
     public Integer getId() {
         return id;
@@ -79,13 +80,15 @@ public class CustomerDTO {
         this.isAdmin = isAdmin;
     }
 
-    public Integer getInvoiceId() {
-        return invoiceId;
+    public List<Integer> getInvoicesIds() {
+        return invoicesIds;
     }
 
-    public void setInvoiceId(Integer invoiceId) {
-        this.invoiceId = invoiceId;
+    public void setInvoicesIds(List<Integer> invoicesIds) {
+        this.invoicesIds = invoicesIds;
     }
+
+ 
 
     
 }

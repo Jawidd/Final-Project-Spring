@@ -51,10 +51,10 @@ public class CustomerController {
 
      }
 
-    @DeleteMapping("/customer/{id}/deleteOne")
-    public ResponseEntity<HttpStatus> deleteCustomerById(@PathVariable Integer id){
+    @DeleteMapping("/customer/{id}/delete")
+    public void deleteCustomerById(@PathVariable Integer id){
         
-        return new ResponseEntity<>(HttpStatus.OK);
+        customerService.deleteCustomerById(id);
      }
     
     @PutMapping(value="customer/update")

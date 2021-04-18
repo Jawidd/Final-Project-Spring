@@ -2,6 +2,7 @@ package hu.cs.ex2.projectManagment.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,10 +62,13 @@ public class CustomerServiceImpl implements CustomerService {
 
         for(Customer customer:customers){
             CustomerDTO customerDTO =modelMapper.map(customer, CustomerDTO.class);
+
+            customerDTO.setInvoicesIds(customer.getInvoices().stream().map(invo->invo.getId()).collect(Collectors.toList()));
+
             customerDTOList.add(customerDTO);
         }
         
-        return null;
+        return customerDTOList;
     }
 
 

@@ -4,30 +4,30 @@ const axiosC = axios.create({
 });
 
 export default {
-  loginUser(user) {
-    return axiosC.post("/user/login", user);
+  /*  loginUser(user) {
+    return axiosC.post("/customer/login", user);
   },
-
+ */
   addUser(user) {
-    return axiosC.post("/user/add", user);
+    return axiosC.post("/customer/add", user);
   },
 
   getAllUsers() {
-    return axiosC.get("/user/getall");
+    return axiosC.get("/customer/getAll");
   },
 
-  deleteUser(userId) {
-    return axiosC.delete(`/user/${userId}/delete`);
+  deleteUser(id) {
+    return axiosC.delete(`/customer/${id}/delete`);
   },
 
   getUser(id) {
-    return axiosC.get(`/user/${id}`);
+    return axiosC.get(`/customer/${id}/getOne`);
   },
   updateUser(user) {
-    return axiosC.put("/user/update", user);
-  },
-
-  deleteAllUsers() {
-    return axiosC.delete("/user/delete/all");
+    return axiosC.put("/customer/update", user);
   }
+
+  /*  deleteAllUsers() {
+    return axiosC.delete("/customer/delete/all");
+  } */
 };
