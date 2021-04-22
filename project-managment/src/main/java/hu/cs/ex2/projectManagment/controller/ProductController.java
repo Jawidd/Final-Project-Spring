@@ -2,6 +2,7 @@ package hu.cs.ex2.projectManagment.controller;
 
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,21 +13,55 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import hu.cs.ex2.projectManagment.dto.ProductDTO;
 import hu.cs.ex2.projectManagment.model.Product;
+
 import hu.cs.ex2.projectManagment.service.ProductService;
+
 
 @RestController
 @CrossOrigin
+@RequestMapping("/api")
 public class ProductController {
       
     @Autowired
     ProductService productservice;
-    
- 
+
+    @Autowired
+    ModelMapper modelMapper;
+
+     @GetMapping("/product/{id}/getOne")
+     public ResponseEntity<ProductDTO> getProductById(@PathVariable Integer id){
+       
+        return new ResponseEntity<>(productservice.convertToDTO(productservice.getProductById(id)),HttpStatus.OK);
+
+     }
+
+
+
+
+
+
+
+  /*   @Autowired
+    TypeService typeService; */
+   
+    @PostMapping("/productDTO/add")
+    public ResponseEntity<ProductDTO> saveProduct(@RequestBody ProductDTO productDTO){
+   
+      Product a=modelMapper.map(productDTO,Product.class);
+
+      
+       ProductDTO productDTO2=productservice.convertToDTO(productservice.addProduct(a));
+       return new ResponseEntity<>(productDTO2,HttpStatus.CREATED);
+    }
+
+
+
+
     @PostMapping("/product/add")
      public ResponseEntity<ProductDTO> saveProduct(@RequestBody Product product){
     
@@ -43,18 +78,6 @@ public class ProductController {
 
     
 
-     /* @GetMapping("/product/{type}/getAll")
-     public ResponseEntity<List<ProductDTO>> getProductsByType(@PathVariable String type){
-     
-        return new ResponseEntity<>(productservice.convertToDTO(productservice.getProductsByType(type)),HttpStatus.OK);
-     } */
-
-    @GetMapping("/product/{id}/getOne")
-     public ResponseEntity<ProductDTO> getProductById(@PathVariable Integer id){
-       
-        return new ResponseEntity<>(productservice.convertToDTO(productservice.getProductById(id)),HttpStatus.OK);
-
-     }
 
    
     
@@ -65,12 +88,28 @@ public class ProductController {
          return new ResponseEntity<>(productDTO,HttpStatus.CREATED);
       }
  
+ 
+      @PutMapping("productDTO/update")
+      public ResponseEntity<ProductDTO> updateProductDTO(@RequestBody ProductDTO productDTO){
       
+         Product a=modelMapper.map(productDTO,Product.class);
+
+      
+         ProductDTO productDTO2=productservice.convertToDTO(productservice.addProduct(a));
+         return new ResponseEntity<>(productDTO2,HttpStatus.OK);
+        }
+    
 
       @DeleteMapping("/product/{id}/delete")
      public void deleteProductById(@PathVariable Integer id){
        productservice.deleteProductById(id);
         
+       
+     /* @GetMapping("/product/{type}/getAll")
+     public ResponseEntity<List<ProductDTO>> getProductsByType(@PathVariable String type){
+     
+        return new ResponseEntity<>(productservice.convertToDTO(productservice.getProductsByType(type)),HttpStatus.OK);
+     } */
 
      }
 }

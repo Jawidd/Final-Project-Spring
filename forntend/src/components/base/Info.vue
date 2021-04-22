@@ -20,7 +20,7 @@
         Experience the most simple way of shopping!
       </base-body>
 
-      <base-btn class="mb-12" color="white" outlined>
+      <base-btn class="mb-12" color="white" outlined to="Contact-us">
         More Info
       </base-btn>
     </div>

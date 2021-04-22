@@ -1,6 +1,6 @@
 import axios from "axios";
 const axiosC = axios.create({
-  baseURL: "http://localhost:3000"
+  baseURL: "/api"
 });
 
 export default {
@@ -8,14 +8,20 @@ export default {
     return axiosC.post("/product/add", product);
   },
 
+  addProductDTO(product) {
+    return axiosC.post("/productDTO/add", product);
+  },
   getAllProducts() {
     return axiosC.get(`/product/getAll`);
+  },
+
+  updateProductDTO(product) {
+    return axiosC.put("/productDTO/update", product);
   },
 
   updateProduct(product) {
     return axiosC.put("/product/update", product);
   },
-
   /* getAllproducts(type) {
     return axiosC.get(`/product/${type}/getall`);
   }, */

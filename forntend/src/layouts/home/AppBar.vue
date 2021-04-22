@@ -2,7 +2,7 @@
   <div>
     <v-app-bar id="home-app-bar" app color="white" elevation="1" height="80">
       <base-img
-        :src="require('@/assets/logo.svg')"
+        :src="require('@/assets/logo.png')"
         class="mr-3 "
         contain
         max-width="64"
@@ -35,6 +35,24 @@
           </v-tab>
         </v-tabs>
       </div>
+      <!--  -------------------- -->
+      <div>
+        <v-tabs v-if="isAdmin" class="hidden-sm-and-down" optional>
+          <v-tab
+            v-for="(name, i) in hiddenItems"
+            :key="i"
+            :to="{ name }"
+            :exact="name === 'Home'"
+            :ripple="false"
+            active-class="text--primary"
+            class="font-weight-bold"
+            min-width="96"
+            text
+          >
+            ##{{ name }}
+          </v-tab>
+        </v-tabs>
+      </div>
 
       <v-app-bar-nav-icon class="hidden-md-and-up" @click="drawer = !drawer" />
     </v-app-bar>
@@ -46,14 +64,19 @@
 <script>
 export default {
   name: "HomeAppBar",
-
+  computed: {
+    isAdmin() {
+      return this.$store.state.isAdmin;
+    }
+  },
   components: {
     HomeDrawer: () => import("./Drawer")
   },
 
   data: () => ({
     drawer: null,
-    items: ["Home", "About", "Contact", "Pro"]
+    items: ["Home", "About", "Contact", "Login"],
+    hiddenItems: ["Category", "Invoice", "Product", "User"]
   })
 };
 </script>

@@ -1,11 +1,11 @@
 <template>
-  <base-info-card title="Instagram">
+  <base-info-card title="Follow On Instagram">
     <v-row dense>
       <v-col v-for="n in 6" :key="n" cols="auto">
         <base-img
-          :src="require(`@/assets/insta-${n}.jpg`)"
+          :src="require(`@/assets/ins-${n}.jpg`)"
           color="grey lighten-1"
-          width="96"
+          width="100"
           tile
         />
       </v-col>

@@ -5,18 +5,18 @@
     single-line
     v-bind="{
       rows: 6,
-      ...$attrs,
+      ...$attrs
     }"
     v-on="$listeners"
   />
 </template>
 
 <script>
-  export default {
-    name: 'BaseTextarea',
-  }
+export default {
+  name: "BaseTextarea"
+};
 </script>
 
 <style lang="sass">
-  //
+//
 </style>

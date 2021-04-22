@@ -9,7 +9,7 @@ export default {
   name: "App",
   metaInfo: {
     title: "App",
-    titleTemplate: "%s | Zero Pro",
+    titleTemplate: "%s | Online Shop",
     htmlAttrs: { lang: "en" },
     meta: [
       { charset: "utf-8" },

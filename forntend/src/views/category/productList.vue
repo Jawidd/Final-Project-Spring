@@ -1,119 +1,111 @@
 <template>
-  <v-container>
-    <!-- 
-      <div class="d-flex"> -->
+  <section class="  d-flex  flex-wrap align-center grey darken-3">
+    <v-hover
+      v-slot="{ hover }"
+      v-for="item in products"
+      :key="item._id"
+      class="mx-2 my-2"
+    >
+      <v-card :class="{ 'on-hover': hover }" max-width="400">
+        <v-img
+          class="white--text align-end"
+          height="200px"
+          :src="getImgUrl(item.img)"
+        >
+          <v-card-title class="h1"> {{ item.name }}</v-card-title>
+        </v-img>
 
-    > <v-card-title>{{ type }} Category</v-card-title>
+        <v-card-subtitle class="pb-0 "
+          >Price: {{ item.price }}$
+        </v-card-subtitle>
 
-    <div class="mt-5 d-flex flex-wrap">
-      <v-card
-        elevation="10"
-        class="ml-5 my-2 "
-        max-width="344"
-        outlined
-        v-for="item in products"
-        :key="item._id"
-      >
-        <v-list-item three-line>
-          <v-list-item-content>
-            <div class="overline mb-4">Price:{{ item.price }}</div>
-            <v-list-item-title class="headline mb-1">
-              {{ item.name }}
-            </v-list-item-title>
-            <v-list-item-subtitle
-              >detail:{{ item.cartId }}</v-list-item-subtitle
-            >
-          </v-list-item-content>
-        </v-list-item>
+        <v-card-text class="text--primary">
+          <div>{{ item.type }}</div>
+
+          <!-- <div>Whitsunday Island, Whitsunday Islands</div> -->
+        </v-card-text>
 
         <v-card-actions>
-          <v-btn
-            @click="deleteone(item.id)"
-            outlined
-            rounded
-            text
-            class="primary"
-          >
-            Buy
+          <v-btn color="orange" text @click="addToCart(currentCartId, item.id)">
+            Add to Cart
           </v-btn>
+
+          <!-- <v-btn color="orange" text>
+            Explore
+          </v-btn> -->
         </v-card-actions>
       </v-card>
-    </div>
-  </v-container>
+    </v-hover>
+  </section>
 </template>
 
 <script>
 import productListService from "../../api/productListService.js";
-
+import cartService from "../../api/cartService.js";
 export default {
   component: {},
 
   data() {
     return {
       type: this.$route.params.type,
- 
+
       id: null,
       name: null,
       price: null,
       quantity: null,
       cartId: null,
-      products: []
+      details: null,
+      img: null,
+      products: [],
+      currentCartId: 14
     };
   },
-  mounted() {
-    productListService.getAllProducts().then(response => {
+  async mounted() {
+    await productListService.getAllProducts().then(response => {
       this.products = response.data;
     });
+    this.products = this.products.filter(element => element.type === this.type);
   },
 
   methods: {
-    async deleteone(id) {
-      const conf = confirm("Buy This Product?");
-      if (conf) {
-        const res = await productListService.deleteProduct(id);
+    getImgUrl(pic) {
+      return require("@/assets/" + pic);
+    },
+    addToCart(currentCartId, itemId) {
+      console.log(currentCartId, "   ", itemId);
+      cartService.addProductToCart(itemId).then(res => {
         console.log(res.data);
-        (this.products = this.products.filter(book => {
-          return book.id !== id;
-        })),
-          this.$store.commit("SET_SNACK", {
-            text: "Book added to Your Cart"
+
+        cartService.getCart(this.currentCartId).then(response => {
+          this.$store.commit("SET_PRODUCT_COUNT", {
+            productCount: response.data.numberOfProducts
           });
-      }
-    },
-    save(date) {
-      this.$refs.menu.save(date);
-    },
+        });
 
-    putOnSale() {
-      const book1 = {
-        name: this.name,
-        detail: this.detail,
-        price: this.price,
-        date: this.date
-      };
-
-      const savedBook = productListService.addproduct(book1);
-
-      console.log("UBook saved");
-      console.log(savedBook);
-
-      this.resetform();
-
-      this.$store.commit("SET_SNACK", {
-        text: "Book added For Sale"
+        /*  cartService.getCart(this.theId).then(response => {
+      console.log(response.data);
+      this.cart = response.data;
+this.updateProductCount(this.cart.numberOfProducts); */
       });
-
-      setTimeout(() => {
-        document.location.reload();
-      }, 2000);
-    },
-
-    resetform() {
-      this.name = null;
-      this.price = null;
-      this.author = null;
-      this.date = null;
+      /* cartService.addProductToCart(currentCartId, itemId).then(response => {
+        console.log(response.data); });*/
     }
   }
 };
 </script>
+<style scoped>
+.v-card {
+  transition: opacity 0.2s ease-in-out;
+}
+
+.v-card:not() {
+  opacity: 0.9;
+}
+
+.v-card:not(.on-hover) {
+  opacity: 0.85;
+}
+.show-btns {
+  color: rgba(255, 255, 255, 1) !important;
+}
+</style>
