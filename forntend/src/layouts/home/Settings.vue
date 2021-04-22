@@ -34,9 +34,10 @@
         <thead>
           <tr>
             <th class="text-left">Id</th>
-            <th class="text-left">ProductName</th>
-            <th class="text-left">ProductPrice</th>
-            <th class="text-left">productType</th>
+            <th class="text-left">Product Name</th>
+            <th class="text-left">Product Price</th>
+            <th class="text-left">product Type</th>
+            <th class="text-left">product Image</th>
           </tr>
         </thead>
         <tbody>
@@ -45,6 +46,7 @@
             <td>{{ item.name }}</td>
             <td>{{ item.price }},00$</td>
             <td>{{ item.type }}</td>
+            <td><v-img :src="getImgUrl(item.img)" width="70px"></v-img></td>
             <v-btn color="error" class="ml-2" @click="removeProduct(item.id)"
               >remove</v-btn
             >
@@ -54,9 +56,13 @@
             <td>{{ cart.productsIds }}</td>
             <td>Total Price:{{ cart.total }}.00$</td>
             <td>Invoice ID:{{ cart.invoiceId }}</td>
+            <td></td>
+            <td>
+              <v-btn color="black" outlined class="white--text">CheckOut</v-btn>
+            </td>
           </tr>
-        </tbody></template
-      >
+        </tbody>
+      </template>
     </v-simple-table>
   </v-menu>
 </template>
@@ -83,6 +89,9 @@ export default {
     };
   },
   methods: {
+    getImgUrl(pic) {
+      return require("@/assets/" + pic);
+    },
     updateProductCount(num) {
       this.$store.commit("SET_PRODUCT_COUNT", { productCount: num });
     },

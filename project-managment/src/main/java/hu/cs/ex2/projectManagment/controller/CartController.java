@@ -23,6 +23,7 @@ import hu.cs.ex2.projectManagment.service.ProductService;
 
 @RestController
 @CrossOrigin
+@RequestMapping("/api")
 public class CartController {
     
 
