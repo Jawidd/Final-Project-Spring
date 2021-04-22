@@ -8,12 +8,7 @@
 
     <v-container>
       <v-row>
-        <v-col
-          v-for="card in cards"
-          :key="card.title"
-          cols="12"
-          md="4"
-        >
+        <v-col v-for="card in cards" :key="card.title" cols="12" md="4">
           <base-info-card v-bind="card" />
         </v-col>
       </v-row>
@@ -22,30 +17,33 @@
 </template>
 
 <script>
-  export default {
-    name: 'SectionAboutOurProduct',
+export default {
+  name: "SectionAboutOurProduct",
 
-    data: () => ({
-      cards: [
-        {
-          title: 'Grow your Revenue',
-          subtitle: 'Best Productivity',
-          text: 'Similique sunt in culpa qui officia deserunt mollitia animi, id est laborut dolorum fuga.harum quidem rerum facilis estexpedita distinctio.',
-          callout: '01',
-        },
-        {
-          title: 'Affordable Prices',
-          subtitle: 'Special Offers',
-          text: 'Similique sunt in culpa qui officia deserunt mollitia animi, id est laborut dolorum fuga.harum quidem rerum facilis estexpedita distinctio.',
-          callout: '02',
-        },
-        {
-          title: 'Target Setting',
-          subtitle: 'Income Flow',
-          text: 'Similique sunt in culpa qui officia deserunt mollitia animi, id est laborut dolorum fuga.harum quidem rerum facilis estexpedita distinctio.',
-          callout: '03',
-        },
-      ],
-    }),
-  }
+  data: () => ({
+    cards: [
+      {
+        title: "Grow your Revenue",
+        subtitle: "Best Productivity",
+        text:
+          "It's not always that we need to find more but rather that we need to find the best.",
+        callout: "01"
+      },
+      {
+        title: "Affordable Prices",
+        subtitle: "Special Offers",
+        text:
+          "Whoever said that money cant buy happiness simply didn`t know where to go shopping.",
+        callout: "02"
+      },
+      {
+        title: "Target Setting",
+        subtitle: "Income Flow",
+        text:
+          "Don`t downgrade your dream to match your reality upgrade your faith to match your destiny.",
+        callout: "03"
+      }
+    ]
+  })
+};
 </script>

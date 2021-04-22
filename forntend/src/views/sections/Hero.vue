@@ -1,25 +1,25 @@
 <template>
   <section id="hero">
     <!--  <v-parallax src="@/assets/material.jpg"></v-parallax> -->
-    <!-- <v-img src="@/assets/abab.jpg"></v-img> -->
+
     <v-container class="pa-4 text-center">
       <v-row class="fill-height" align="center" justify="center">
-        <template v-for="(item, i) in items">
-          <v-col :key="i" cols="12" md="4">
+        <template v-for="item in typeList">
+          <v-col :key="item.type" cols="12" md="4">
             <v-hover v-slot="{ hover }">
               <v-card
-                :to="`/category/${item.title}/productList`"
+                :to="`/category/${item.type}/productList`"
                 :elevation="hover ? 12 : 2"
                 :class="{ 'on-hover': hover }"
               >
-                <v-img :src="item.img" height="225px">
+                <v-img :src="getImgUrl(item.img)" height="225px">
                   <v-card-title class="title white--text">
                     <v-row
                       class="fill-height flex-column"
                       justify="space-between"
                     >
                       <p class="mt-5 ml-10 subheading text-left">
-                        {{ item.title }}
+                        {{ item.type }}
                       </p>
 
                       <div class="align-self-center">
@@ -43,35 +43,31 @@
 </template>
 
 <script>
+import typeService from "../../api/typeService.js";
+
 export default {
-  data: () => ({
-    abba: "asdfasdf",
-
-    items: [
-      {
-        title: "MobilePhones",
-
-        img: `@/assets/phones.jpg`
-      },
-      {
-        title: "Laptops",
-        img: "@/assets/headphones.jpg"
-      },
-      {
-        title: "Headphones",
-        // img: "@/assets/laptop.png"
-        img: "https://picsum.photos/200/300"
-      }
-    ],
-    transparent: "rgba(255, 255, 255, 0)"
-  }),
-
-  //export default {
   name: "SectionHero",
 
   provide: {
     theme: { isDark: true }
   },
+  methods: {
+    getImgUrl(pic) {
+      return require("@/assets/" + pic);
+    }
+  },
+  async mounted() {
+    await typeService.getAllTypes().then(response => {
+      this.typeList = response.data;
+      console.log(this.typeList);
+    });
+  },
+
+  data: () => ({
+    typeList: null,
+
+    transparent: "rgba(255, 255, 255, 0)"
+  }),
 
   computed: {
     minHeight() {

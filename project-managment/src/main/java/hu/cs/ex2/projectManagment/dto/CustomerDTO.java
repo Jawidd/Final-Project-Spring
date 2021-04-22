@@ -13,6 +13,8 @@ public class CustomerDTO {
     private String password;
     private String location;
     private boolean isAdmin;
+    private Long phoneNumber;
+    
     
     private List<Integer> invoicesIds;
 
@@ -86,6 +88,14 @@ public class CustomerDTO {
 
     public void setInvoicesIds(List<Integer> invoicesIds) {
         this.invoicesIds = invoicesIds;
+    }
+
+    public Long getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(Long phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
  

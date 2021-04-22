@@ -26,6 +26,7 @@ public class Customer {
     private String password;
     private String location;
     private boolean isAdmin;
+    private Long phoneNumber;
     //private Date creationDate;
     //private Date modificationDate;
 
@@ -107,6 +108,14 @@ public class Customer {
 
     public void setAdmin(boolean isAdmin) {
         this.isAdmin = isAdmin;
+    }
+
+    public Long getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(Long phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
    

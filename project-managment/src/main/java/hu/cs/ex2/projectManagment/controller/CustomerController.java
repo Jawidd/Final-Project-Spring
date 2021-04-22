@@ -15,6 +15,7 @@ import hu.cs.ex2.projectManagment.model.Customer;
 import hu.cs.ex2.projectManagment.service.CustomerService;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @RestController
 @CrossOrigin
+@RequestMapping("/api")
 public class CustomerController {
 
 

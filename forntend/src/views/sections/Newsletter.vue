@@ -12,6 +12,7 @@
                 height="40"
                 outlined
                 style="margin-top: -7px;"
+                @click="subscribe()"
               >
                 Subscribe
               </v-btn>
@@ -25,6 +26,9 @@
 
 <script>
 export default {
-  name: "SectionNewsletterAlt"
+  name: "SectionNewsletterAlt",
+  methods: {
+    subscribe() {}
+  }
 };
 </script>
